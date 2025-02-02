@@ -1,0 +1,124 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image:linear-gradient(180deg,rgb(220, 240, 252),rgb(174, 243, 237));
+
+ 
+}
+
+.auth-form {
+    background-color: #f0f5f4;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    padding-right: 40px;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-group-name {
+    margin-bottom: 20px;
+    text-align: left;
+    margin-left: 3px;
+    display: flex;
+    width: 400px;
+    .MuiOutlinedInput-root{
+        border-radius:10px;
+        transition: unset;
+        width: 400px;
+        height: 50px;
+        align-items: center;
+        align-content: center;
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: #CBD4E2;
+        }
+        
+    }
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #1976d2;
+    }
+}
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    margin-left: 12px;
+    .MuiOutlinedInput-root{
+        border-radius:10px;
+        transition: unset;
+        width: 400px;
+        height: 50px;
+        align-items: center;
+        align-content: center;
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: #CBD4E2;
+        }
+        
+    }
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #1976d2;
+    }
+}
+.input-group-firstname {
+    text-align: left;
+    margin-left: 12px;
+    .MuiOutlinedInput-root{
+        border-radius:10px;
+        transition: unset;
+        width: 191px;
+        height: 50px;
+        align-items: center;
+        align-content: center;
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: #CBD4E2;
+        }
+        
+    }
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #1976d2;
+    }
+}
+.auth-btn {
+    width: 30%;
+    padding: 12px;
+    border: none;
+    background-color: #105837;
+    color: white;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    background-color: #053f25;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
