@@ -1,19 +1,15 @@
 import axios from "axios";
 
-// Set the base URL for your backend server (ensure this points to your Flask backend)
 export const baseUrl = "http://localhost:5001/api";
 
-// Axios default configuration
 axios.defaults.baseURL = baseUrl;
 
-// User Signup
-export const userSignup = async (firstName, lastName, email, age, password) => {
+export const userSignup = async (firstName, lastName, email, password) => {
     try {
         const response = await axios.post("/auth/signup", {
             firstName,
             lastName,
             email,
-            age,
             password,
         });
         return response.data; // Return the response data
@@ -22,12 +18,10 @@ export const userSignup = async (firstName, lastName, email, age, password) => {
         throw error.response?.data || error.message; // Throw error for handling
     }
 };
-
-// Verify OTP and Set Password
-export const verifyOtpAndSetPassword = async (email, otp, password) => {
+export const verifyOtpAndSetPassword = async (firstName,lastName,email,firebaseUID) => {
     try {
-        const response = await axios.post("/auth/verify-otp", { email, otp, password });
-        return response.data; // Return the response data
+        const response = await axios.post("/auth/verify-otp", { firstName,lastName,email,firebaseUID });
+        return response.data;
     } catch (error) {
         console.error("Error verifying OTP:", error.response?.data || error.message);
         throw error.response?.data || error.message;
@@ -35,9 +29,9 @@ export const verifyOtpAndSetPassword = async (email, otp, password) => {
 };
 
 // User Login
-export const userLogin = async (email, password) => {
+export const userLogin = async (idToken) => {
     try {
-        const response = await axios.post("/auth/login", { email, password });
+        const response = await axios.post("/auth/login", { idToken });
         return response.data; // Return the response data
     } catch (error) {
         console.error("Error during login:", error.response?.data || error.message);

@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchUserDetails, userLogin } from "../../../apiCalls/api";
 import "../../styles/component/signin/signin.scss";
+import { getAuth,signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../fireBaseConfig";
+
 
 const SignInPage = ({ onSignIn }) => {
     const [email, setEmail] = useState("");
@@ -64,27 +67,25 @@ const SignInPage = ({ onSignIn }) => {
 
         if (!emailError && !passwordError) {
             try {
-                const result = await userLogin(email, password);
-                console.log("Login successful:", result);
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const firebaseUser = userCredential.user;
+                const firebaseIdToken = await firebaseUser.getIdToken(true);
+                const result = await userLogin(firebaseIdToken);
+                console.log("Backend login successful:", result);
 
                 setAuthError("");
                 handleData(result);
-
                 await getDetails(result.token);
-                onSignIn(getauthstatus); 
+                onSignIn(true);
                 navigate("/dashboard");
             } catch (error) {
-                console.error("Error logging in:", error);
+                console.error("Login error:", error);
                 setAuthError(error.message || "An error occurred. Please try again.");
             }
         } else {
-            setErrors({
-                email: emailError,
-                password: passwordError,
-            });
+            setErrors({ email: emailError, password: passwordError });
         }
     };
-
     return (
         <div className="signin-auth-container">
             <div className="signin-auth-form">
