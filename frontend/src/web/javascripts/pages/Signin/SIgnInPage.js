@@ -1,10 +1,10 @@
 import { TextField } from "@mui/material";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../../../fireBaseConfig";
 import { fetchUserDetails, userLogin } from "../../../apiCalls/api";
 import "../../styles/component/signin/signin.scss";
-import { getAuth,signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../../fireBaseConfig";
 
 
 const SignInPage = ({ onSignIn }) => {
@@ -13,6 +13,7 @@ const SignInPage = ({ onSignIn }) => {
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
     const [authError, setAuthError] = useState("");
+    const [userName,setUserName]=useState();
     const navigate = useNavigate();
     const getauthstatus=JSON.parse(localStorage.getItem('isAuthenticated'));
     const validateEmail = (nameValue) => (!nameValue ? "Email is required" : "");
@@ -52,7 +53,6 @@ const SignInPage = ({ onSignIn }) => {
     const getDetails = async (token) => {
         try {
             const user = await fetchUserDetails(token);
-            localStorage.setItem("userId", JSON.stringify(user._id));
         } catch (error) {
             console.error("Error fetching user details:", error);
         }
@@ -72,9 +72,9 @@ const SignInPage = ({ onSignIn }) => {
                 const firebaseIdToken = await firebaseUser.getIdToken(true);
                 const result = await userLogin(firebaseIdToken);
                 console.log("Backend login successful:", result);
-
                 setAuthError("");
                 handleData(result);
+                localStorage.setItem("userId", result?.token);
                 await getDetails(result.token);
                 onSignIn(true);
                 navigate("/dashboard");

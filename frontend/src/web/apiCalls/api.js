@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseUrl = "http://localhost:5001/api";
+export const baseUrl = "http://localhost:5001/";
 
 axios.defaults.baseURL = baseUrl;
 
@@ -20,7 +20,7 @@ export const userSignup = async (firstName, lastName, email, password) => {
 };
 export const verifyOtpAndSetPassword = async (firstName,lastName,email,firebaseUID) => {
     try {
-        const response = await axios.post("/auth/verify-otp", { firstName,lastName,email,firebaseUID });
+        const response = await axios.post("/verify-otp", { firstName,lastName,email,firebaseUID });
         return response.data;
     } catch (error) {
         console.error("Error verifying OTP:", error.response?.data || error.message);
@@ -31,23 +31,21 @@ export const verifyOtpAndSetPassword = async (firstName,lastName,email,firebaseU
 // User Login
 export const userLogin = async (idToken) => {
     try {
-        const response = await axios.post("/auth/login", { idToken });
-        return response.data; // Return the response data
+        const response = await axios.post("/login", { idToken });
+        return response.data;
     } catch (error) {
         console.error("Error during login:", error.response?.data || error.message);
         throw error.response?.data || error.message;
     }
 };
-
-// Fetch User Details
 export const fetchUserDetails = async (token) => {
     try {
-        const response = await axios.get("/auth/me", {
+        const response = await axios.get("/fetchdata", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
-        return response.data; // Return the response data
+        return response.data;
     } catch (error) {
         console.error("Error fetching user details:", error.response?.data || error.message);
         throw error.response?.data || error.message;
@@ -68,3 +66,35 @@ export const deleteUser = async (userId, token) => {
         throw error.response?.data || error.message;
     }
 };
+
+// api for ai 
+export const processUserInput = async (userId, text, image, voice) => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    if (text) formData.append("text", text);
+    if (image) formData.append("image", image);
+    if (voice) formData.append("voice", voice);
+
+    try {
+        const response = await axios.post("/recommendation/process", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        });
+        console.log("Image response:", response.data);
+        return response.data;
+    } catch (error) {
+        console.error("Error processing input:", error.response?.data || error.message);
+        throw error.response?.data || error.message;
+    }
+};
+
+export const fetchUserHistory = async (userId) => {
+    try {
+        const response = await axios.get(`/recommendation/chat-history?userId=${userId}`);
+
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching history:", error.response?.data || error.message);
+        throw error.response?.data || error.message;
+    }
+};
+

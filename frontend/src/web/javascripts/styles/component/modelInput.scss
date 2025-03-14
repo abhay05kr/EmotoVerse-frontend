@@ -1,0 +1,127 @@
+/* Styling for ModelDataInput component */
+.model-data-input {
+    max-width: 1200px;
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 70px;
+}
+
+.model-data-input h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+textarea {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #6c63ff;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    resize: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #6c63ff;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #5146e3;
+}
+
+.upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #ff914d;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.upload-btn:hover {
+    background: #ff784d;
+}
+
+.chat-display {
+    max-height: 300px;
+    min-height: 300px;
+    overflow-y: auto;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+}
+
+.message {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #e0f7fa;
+}
+
+.message.text {
+    background: #e3f2fd;
+}
+
+.message.voice {
+    background: #fff3e0;
+}
+
+.message img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chat-display::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat-display::-webkit-scrollbar-thumb {
+    background: #6c63ff;
+    border-radius: 8px;
+}
+
+.chat-display::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .model-data-input {
+        padding: 15px;
+    }
+
+    .input-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

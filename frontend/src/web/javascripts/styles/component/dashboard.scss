@@ -1,0 +1,21 @@
+.dashboard-layout {
+    display: flex;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.dashboard-content {
+    width: 100%;
+    padding: 20px;
+    background: #c4dafa;
+    height: calc(100dvh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
