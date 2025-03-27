@@ -41,6 +41,7 @@ const ModelDataInput = () => {
             try {
                 const response = await processUserInput(userId, textInput, null, null);
                 updateMessages(response.text_response);
+                setTextInput('');
             } catch (error) {
                 console.error("Text processing error:", error);
             } finally {
