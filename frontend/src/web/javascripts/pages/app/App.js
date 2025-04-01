@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import SignInPage from "../Signin/SIgnInPage";
 import SignUpPage from "../Signup/SignUpPage";
 import Dashboard from "../dashboard/dashboard";
+import SpotifyCallbackPage from "../spotifycallback/SpotifyCallbackPage";
 
 const ProtectedRoute = ({ element }) => {
     const userId = localStorage.getItem("userId");
@@ -30,6 +31,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<SignUpPage />} />
                     <Route path="/signin" element={<SignInPage onSignIn={handleSignInStatus} />} />
+                    <Route path="/spotify-callback" element={<SpotifyCallbackPage />} />
                     <Route path="/dashboard/*" element={<ProtectedRoute element={<Dashboard />} />} />
                 </Routes>
             </Router>

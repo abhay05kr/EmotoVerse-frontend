@@ -125,3 +125,20 @@ button:hover {
         align-items: stretch;
     }
 }
+
+.suggestion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .suggestion-item {
+    cursor: pointer;
+    color: #3498db;
+    font-weight: bold;
+  }
+  
+  .suggestion-item:hover {
+    color: #2980b9;
+  }
+  
